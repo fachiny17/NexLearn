@@ -1,32 +1,37 @@
 # Core Web Framework
 Flask==3.0.0
-Werkzeug==3.0.1
+Flask-SocketIO==5.3.6
+Werkzeug==3.1.3
 
 # Flask Dependencies
-Jinja2==3.1.2
-MarkupSafe==2.1.3
-itsdangerous==2.1.2
-click==8.1.7
-blinker==1.7.0
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+itsdangerous==2.2.0
+click==8.1.8
+blinker==1.9.0
 
 # Production deployment
-gunicorn==21.2.0
+gunicorn==25.1.0
 
 # CORS support
-Flask-CORS==4.0.0
+Flask-CORS==5.0.0
 
 # WebSocket / real-time
-flask-socketio==5.3.5
-python-socketio==5.10.0
+python-socketio==5.15.0
+python-engineio==4.12.3
 
 # Deepgram SDK (real-time transcription)
-deepgram-sdk>=3.2.0
+deepgram-sdk==3.11.0
 
 # Environment variable loading
-python-dotenv>=1.0.0
+python-dotenv==1.2.1
 
-# Audio decoding (ffmpeg called via subprocess — make sure ffmpeg is installed on the system)
-numpy>=1.26.0
+# Audio processing
+numpy==2.2.4
 
+# Async support (required for Flask-SocketIO)
+gevent==25.4.1
+greenlet==3.2.3
 
-gevent==25.9.1
+# Livetranscriber
+livetranscriber==0.1.1
