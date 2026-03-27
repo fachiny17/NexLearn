@@ -109,12 +109,28 @@
                         <div class="bar" style="--delay:19"></div>
                     </div>
 
-                    <!-- Recording status row — language badge added -->
+                    <!-- Recording status row -->
                     <div class="recording-status" id="recording-status-bar" style="display:none;">
                         <div class="recording-indicator"><div class="pulse"></div></div>
-                        <span>Recording...</span>
-                        <span class="duration" id="recording-duration">00:00</span>
-                        <!-- Detected language badge (populated by JS) -->
+
+                        <!-- Label: "Connecting..." → "Recording" -->
+                        <span id="recording-status-label">Connecting...</span>
+
+                        <!-- Phase 1: connecting clock (grey, shown while handshake runs) -->
+                        <span class="duration" id="connecting-duration"
+                              style="color:var(--text-secondary); font-size:0.85rem;">00:00</span>
+
+                        <!-- Phase 2 divider + mic icon (hidden until connected) -->
+                        <span id="timer-divider"
+                              style="display:none; color:var(--text-secondary); font-size:0.8rem;">
+                            &nbsp;|&nbsp;🎙
+                        </span>
+
+                        <!-- Phase 2: real recording timer (starts on Deepgram connect) -->
+                        <span class="duration" id="recording-duration"
+                              style="display:none;">00:00</span>
+
+                        <!-- Detected language badge -->
                         <span id="detected-language"
                               style="margin-left:8px; font-size:0.75rem;
                                      padding:2px 8px; border-radius:999px;
@@ -286,7 +302,7 @@
                     </div>
                 </div>
 
-            </div><!-- /action-grid -->
+            </div>
         </main>
     </div>
 
