@@ -21,7 +21,7 @@ socketio = SocketIO(
     app,
     cors_allowed_origins="*",
     max_size=10_000_000,
-    async_mode='threading'
+    async_mode='gevent'
 )
 
 # ── Per-client session store ───────────────────────────────────────────────────
