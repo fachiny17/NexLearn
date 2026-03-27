@@ -1,5 +1,6 @@
 # Core Web Framework
-Flask==3.0.0
+Flask==3.1.3
+Flask_SocketIO==5.3.5
 Werkzeug==3.0.1
 
 # Flask Dependencies
@@ -20,13 +21,14 @@ flask-socketio==5.3.5
 python-socketio==5.10.0
 
 # Deepgram SDK (real-time transcription)
-deepgram-sdk>=3.2.0
+deepgram_sdk==3.11.0
 
 # Environment variable loading
-python-dotenv>=1.0.0
+python-dotenv==1.2.2
 
 # Audio decoding (ffmpeg called via subprocess — make sure ffmpeg is installed on the system)
 numpy>=1.26.0
 
+livetranscriber==0.1.1
 
 gevent==25.9.1
