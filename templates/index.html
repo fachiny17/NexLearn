@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Transcript System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="container">
+
+        <!-- ── Header ─────────────────────────────────────────────────────── -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M5 35L20 5L35 35H28L20 20L12 35H5Z" fill="url(#logoGradient)"/>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="5" y1="5" x2="35" y2="35">
+                                <stop offset="0%"   stop-color="#00d4ff"/>
+                                <stop offset="100%" stop-color="#0095ff"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">NexLearn</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <!-- Theme toggle -->
+                <button class="icon-btn theme-toggle-btn" id="theme-toggle" title="Toggle dark/light mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <line x1="10" y1="1"  x2="10" y2="3"  stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="1"  y1="10" x2="3"  y2="10" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="17" y1="10" x2="19" y2="10" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="3.5"  y1="3.5"  x2="5"    y2="5"    stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="15"   y1="15"   x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="16.5" y1="3.5"  x2="15"   y2="5"    stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="5"    y1="15"   x2="3.5"  y2="16.5" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <svg class="moon-icon hidden" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M18 10.5C17.8 15.5 13.5 19.5 8.5 19.5C4.4 19.5 1 16.1 1 12C1 8.4 3.8 5.3 7.5 5.1C7.3 5.7 7.2 6.3 7.2 7C7.2 11 10.5 14.3 14.5 14.3C15.7 14.3 16.9 14 17.9 13.4C18 13.6 18 13.8 18 14C18 14.2 18 14.3 18 14.5Z"
+                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </button>
+
+                <button class="icon-btn notification-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2C8 2 6 3.5 6 6V10L4 12V14H16V12L14 10V6C14 3.5 12 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <path d="M8 14V15C8 16.1 8.9 17 10 17C11.1 17 12 16.1 12 15V14" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+
+                <button class="icon-btn settings-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <path d="M10 1V3M10 17V19M19 10H17M3 10H1M16.5 3.5L15 5M5 15L3.5 16.5M16.5 16.5L15 15M5 5L3.5 3.5" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+
+                <div class="user-profile">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Johnson" alt="User">
+                    <span>Mr. Johnson</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── Main content ────────────────────────────────────────────────── -->
+        <main class="main-content">
+
+            <!-- Title section -->
+            <div class="title-section">
+                <h1 class="main-title">Transcribing Voice to Text...</h1>
+                <div class="subtitle-wrapper">
+                    <p class="subtitle">AI is currently converting the teacher's voice into text...</p>
+
+                    <!-- Audio visualizer bars -->
+                    <div class="audio-visualizer">
+                        <div class="bar" style="--delay:0"></div>
+                        <div class="bar" style="--delay:1"></div>
+                        <div class="bar" style="--delay:2"></div>
+                        <div class="bar" style="--delay:3"></div>
+                        <div class="bar" style="--delay:4"></div>
+                        <div class="bar" style="--delay:5"></div>
+                        <div class="bar" style="--delay:6"></div>
+                        <div class="bar" style="--delay:7"></div>
+                        <div class="bar" style="--delay:8"></div>
+                        <div class="bar" style="--delay:9"></div>
+                        <div class="bar" style="--delay:10"></div>
+                        <div class="bar" style="--delay:11"></div>
+                        <div class="bar" style="--delay:12"></div>
+                        <div class="bar" style="--delay:13"></div>
+                        <div class="bar" style="--delay:14"></div>
+                        <div class="bar" style="--delay:15"></div>
+                        <div class="bar" style="--delay:16"></div>
+                        <div class="bar" style="--delay:17"></div>
+                        <div class="bar" style="--delay:18"></div>
+                        <div class="bar" style="--delay:19"></div>
+                    </div>
+
+                    <!-- Recording status row — language badge added -->
+                    <div class="recording-status" id="recording-status-bar" style="display:none;">
+                        <div class="recording-indicator"><div class="pulse"></div></div>
+                        <span>Recording...</span>
+                        <span class="duration" id="recording-duration">00:00</span>
+                        <!-- Detected language badge (populated by JS) -->
+                        <span id="detected-language"
+                              style="margin-left:8px; font-size:0.75rem;
+                                     padding:2px 8px; border-radius:999px;
+                                     background:rgba(0,212,255,0.15);
+                                     color:var(--accent-cyan);
+                                     display:none;">
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Start Recording card ────────────────────────────────────── -->
+            <div class="card transcription-card" id="upload-section">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2C5.6 2 2 5.6 2 10C2 14.4 5.6 18 10 18C14.4 18 18 14.4 18 10C18 5.6 14.4 2 10 2Z"
+                                  stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h2>Start Recording</h2>
+                </div>
+
+                <div class="transcription-content">
+                    <p>Click the microphone button to start recording audio in real-time.
+                       Audio is streamed to the server and transcribed as it's captured.</p>
+
+                    <div class="file-upload-container" style="text-align:center; margin-top:2rem;">
+                        <!-- Big circular microphone button -->
+                        <button class="btn btn-primary" id="start-recording-btn"
+                                style="width:120px; height:120px; border-radius:50%;
+                                       font-size:0; display:flex; align-items:center;
+                                       justify-content:center; margin:0 auto;">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                <path d="M30 8C21.7 8 15 14.7 15 23V32C15 40.3 21.7 47 30 47C38.3 47 45 40.3 45 32V23C45 14.7 38.3 8 30 8Z"
+                                      stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M12 32C12 32 12 38 12 41C12 46.5 20.2 51 30 51C39.8 51 48 46.5 48 41C48 38 48 32 48 32"
+                                      stroke="currentColor" stroke-width="2" fill="none"/>
+                                <line x1="30" y1="47" x2="30" y2="55" stroke="currentColor" stroke-width="2"/>
+                                <line x1="22" y1="55" x2="38" y2="55" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </button>
+
+                        <!-- Status text — ID is on the <p> tag, matches JS getElementById -->
+                        <p id="recording-status"
+                           style="margin-top:1rem; font-size:0.9rem; color:var(--text-secondary);"></p>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn btn-secondary" id="cancel-recording-btn" style="display:none;">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary" id="stop-recording-btn" style="display:none;">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <rect x="4" y="3" width="10" height="10" fill="currentColor"/>
+                        </svg>
+                        Stop Recording
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── Live Transcription card ──────────────────────────────────── -->
+
+            <div class="card transcription-card" id="live-transcription-section" style="display:none;">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <circle cx="10" cy="10" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h2>Live Transcription</h2>
+                </div>
+
+                <div class="transcription-content">
+                    <p id="transcription-text"
+                       style="min-height:80px; white-space:pre-wrap; line-height:1.8;">
+                    </p>
+                    <div class="word-count">
+                        <span>Words: <span id="word-count">0</span></span>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn btn-secondary" id="pause-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <rect x="4" y="3" width="3" height="10" fill="currentColor"/>
+                            <rect x="9" y="3" width="3" height="10" fill="currentColor"/>
+                        </svg>
+                        Pause
+                    </button>
+                    <button class="btn btn-primary" id="stop-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <circle cx="8" cy="8" r="2" fill="currentColor"/>
+                        </svg>
+                        Stop &amp; Save
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── Action cards grid ────────────────────────────────────────── -->
+            <div class="action-grid">
+
+                <!-- Summarize card -->
+                <div class="card action-card">
+                    <div class="action-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <rect x="15" y="15" width="30" height="35" rx="2" stroke="url(#ig1)" stroke-width="2" fill="none"/>
+                            <line x1="20" y1="23" x2="35" y2="23" stroke="url(#ig1)" stroke-width="2"/>
+                            <line x1="20" y1="28" x2="40" y2="28" stroke="url(#ig1)" stroke-width="2"/>
+                            <line x1="20" y1="33" x2="32" y2="33" stroke="url(#ig1)" stroke-width="2"/>
+                            <circle cx="45" cy="20" r="5" fill="#00d4ff">
+                                <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <defs>
+                                <linearGradient id="ig1" x1="15" y1="15" x2="45" y2="50">
+                                    <stop offset="0%"   stop-color="#00d4ff"/>
+                                    <stop offset="100%" stop-color="#0095ff"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Summarize Text</h3>
+                    <p>Generate a concise summary of the transcribed text.</p>
+                    <button class="btn btn-action" id="generate-summary-btn">
+                        Generate Summary
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Download card -->
+                <div class="card action-card">
+                    <div class="action-icon pdf-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <rect x="18" y="12" width="24" height="32" rx="2" stroke="url(#ig2)" stroke-width="2" fill="none"/>
+                            <path d="M30 12V20L38 20L30 12Z" fill="url(#ig2)"/>
+                            <line x1="23" y1="28" x2="37" y2="28" stroke="url(#ig2)" stroke-width="2"/>
+                            <line x1="23" y1="33" x2="37" y2="33" stroke="url(#ig2)" stroke-width="2"/>
+                            <line x1="23" y1="38" x2="32" y2="38" stroke="url(#ig2)" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="ig2" x1="18" y1="12" x2="42" y2="44">
+                                    <stop offset="0%"   stop-color="#00d4ff"/>
+                                    <stop offset="100%" stop-color="#0095ff"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Download</h3>
+                    <p>Save the transcription or summary as a text file.</p>
+                    <div class="download-options">
+                        <button class="btn btn-download" id="download-transcription-btn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 2V11M8 11L5 8M8 11L11 8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M3 14H13" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            Download Transcription
+                        </button>
+                        <button class="btn btn-download" id="download-summary-btn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 2V11M8 11L5 8M8 11L11 8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M3 14H13" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            Download Summary
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- /action-grid -->
+        </main>
+    </div>
+
+    <!-- Socket.IO client (must come before script.js) -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
