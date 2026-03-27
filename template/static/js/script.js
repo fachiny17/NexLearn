@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ── State ──────────────────────────────────────────────────────────────────────
-let mediaRecorder = null;
-let isRecording   = false;
-let isPaused      = false;
-let recordingTimer = null;
-let recordingStartTime = null;
-let pendingStream = null;
+let mediaRecorder       = null;
+let isRecording         = false;
+let isPaused            = false;
+let recordingTimer      = null;
+let recordingStartTime  = null;
+let pendingStream       = null;
+let connectingTimer     = null;
+let connectingStartTime = null;
 
 // ── Socket.IO setup ────────────────────────────────────────────────────────────
 const socket = io({ transports: ['websocket'] });
@@ -181,14 +183,13 @@ function beginRecording(stream) {
 
     isRecording = true;
     isPaused    = false;
-    recordingStartTime = Date.now();
 
     pendingStream = stream;
     socket.emit('start_recording');
 
-    // Show the live UI immediately so the user knows something is happening
+    // Show the live UI immediately with a "connecting" state
     showLiveSection(true);
-    startTimer();
+    startConnectingTimer();
     showNotification('Connecting to transcription service...', 'info');
 }
 
@@ -208,7 +209,8 @@ function _startMediaRecorder(stream) {
     };
  
     mediaRecorder.start(2000);
-    showNotification('Recording started.', 'success');
+    startRecordingTimer();   // ← real timer starts NOW — Deepgram is connected
+    showNotification('Recording started! Transcribing live...', 'success');
     console.log('MediaRecorder started (2000ms timeslice).');
 }
 
@@ -229,9 +231,23 @@ function stopRecording(save = true) {
     }
  
     clearInterval(recordingTimer);
-    recordingTimer = null;
+    clearInterval(connectingTimer);
+    recordingTimer      = null;
+    connectingTimer     = null;
+    connectingStartTime = null;
+
     const statusBar = document.getElementById('recording-status-bar');
     if (statusBar) statusBar.style.display = 'none';
+
+    // Reset all timer elements for the next session
+    const label   = document.getElementById('recording-status-label');
+    const connDur = document.getElementById('connecting-duration');
+    const divider = document.getElementById('timer-divider');
+    const recDur  = document.getElementById('recording-duration');
+    if (label)   label.textContent     = 'Connecting...';
+    if (connDur) { connDur.textContent = '00:00'; connDur.style.display = 'inline'; }
+    if (divider) divider.style.display = 'none';
+    if (recDur)  { recDur.textContent  = '00:00'; recDur.style.display  = 'none'; }
  
     socket.emit('stop_recording');
  
@@ -311,22 +327,53 @@ function showLiveSection(show) {
     }
 }
 
-function startTimer() {
-    const durationEl  = document.getElementById('recording-duration');
-    const statusBar   = document.getElementById('recording-status-bar');
+// ── Phase 1: Connecting clock ──────────────────────────────────────────────────
+// Starts the moment the user clicks record. Shows how long the handshake takes.
+function startConnectingTimer() {
+    const statusBar = document.getElementById('recording-status-bar');
+    const label     = document.getElementById('recording-status-label');
+    const connDur   = document.getElementById('connecting-duration');
 
-    // Show the status bar and reset the clock
-    if (statusBar)  statusBar.style.display  = 'flex';
-    if (durationEl) durationEl.textContent   = '00:00';
+    if (statusBar) statusBar.style.display = 'flex';
+    if (label)     label.textContent       = 'Connecting...';
+    if (connDur)   connDur.style.display   = 'inline';
 
-    let pausedAt     = 0;   // timestamp when pause began
-    let totalPaused  = 0;   // cumulative ms spent paused
+    connectingStartTime = Date.now();
+    connectingTimer = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - connectingStartTime) / 1000);
+        const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+        const seconds = String(elapsed % 60).padStart(2, '0');
+        if (connDur) connDur.textContent = `${minutes}:${seconds}`;
+    }, 1000);
+}
+
+// ── Phase 2: Real recording timer ──────────────────────────────────────────────
+// Starts only after Deepgram confirms a successful connection.
+function startRecordingTimer() {
+    // Kill the connecting clock
+    clearInterval(connectingTimer);
+    connectingTimer = null;
+
+    const label   = document.getElementById('recording-status-label');
+    const connDur = document.getElementById('connecting-duration');
+    const divider = document.getElementById('timer-divider');
+    const recDur  = document.getElementById('recording-duration');
+
+    // Swap UI: hide connecting clock, show real timer
+    if (label)   label.textContent     = 'Recording';
+    if (connDur) connDur.style.display = 'none';
+    if (divider) divider.style.display = 'inline';
+    if (recDur)  recDur.style.display  = 'inline';
+
+    recordingStartTime = Date.now();
+
+    let pausedAt    = 0;
+    let totalPaused = 0;
 
     recordingTimer = setInterval(() => {
         if (!isRecording) return;
 
         if (isPaused) {
-            // Accumulate paused time so elapsed doesn't count it
             if (!pausedAt) pausedAt = Date.now();
             return;
         }
@@ -339,7 +386,7 @@ function startTimer() {
         const elapsed = Math.floor((Date.now() - recordingStartTime - totalPaused) / 1000);
         const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
         const seconds = String(elapsed % 60).padStart(2, '0');
-        if (durationEl) durationEl.textContent = `${minutes}:${seconds}`;
+        if (recDur) recDur.textContent = `${minutes}:${seconds}`;
     }, 1000);
 }
 
