@@ -35,3 +35,6 @@ greenlet==3.2.3
 
 # Livetranscriber
 livetranscriber==0.1.1
+
+#gevent-websocket
+gevent-websocket==0.10.1
