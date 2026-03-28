@@ -120,21 +120,21 @@ The browser's `MediaRecorder` only includes the WebM container header in the fir
 
 ```text
 NexLearn/
-├── app.py
-├── features.py
-├── template/
-│   └── static/
-│       ├── css/
-│       │   └── style.css
-│       └── js/
-│           └── script.js
-├── templates/
-│   └── index.html
-├── test.py
-├── requirements.txt
-├── .env
-├── .gitignore
-└── README.md
+   app.py
+   features.py
+   template/
+      static/
+         css/
+            style.css
+            js/
+               script.js
+   templates/
+      index.html
+   test.py
+   requirements.txt
+   .env
+   .gitignore
+   README.md
 ```
 
 ## Getting Started
@@ -199,36 +199,6 @@ python3 test.py
 ```
 
 Speaks into your system microphone directly. Press `Ctrl+C` to stop. Useful for verifying your API key and network connection independently of the web UI.
-
----
-
-## Deployment
-
-### Render (Recommended)
-
-1. Push the project to a GitHub repository.
-2. Go to [render.com](https://render.com) → New → Web Service → connect your repository.
-3. Configure the service:
-
-| Setting | Value |
-|---|---|
-| **Runtime** | Python 3 |
-| **Build Command** | `pip install -r requirements.txt` |
-| **Start Command** | `gunicorn -k gevent -w 1 app:app` |
-
-4. Under **Environment**, add:
-
-```
-DEEPGRAM_API_KEY=your_deepgram_api_key_here
-```
-
-5. Click **Deploy**.
-
-> ⚠️ **Critical:** Always use `gunicorn -k gevent -w 1`. Socket.IO requires a single gevent worker — multiple workers will cause WebSocket connections to silently fail because different workers do not share the same in-memory session store.
-
-### Other Platforms
-
-The app runs on any platform that supports Python and WebSockets (Railway, Fly.io, VPS, etc.). The same gunicorn command applies. Make sure port `5000` (or your `PORT` env variable) is exposed.
 
 ---
 
@@ -351,6 +321,6 @@ This project is licensed under the [MIT License](LICENSE) — free to use, modif
 
 <div align="center">
 
-Built by [Chisom](https://github.com/fachiny17) &nbsp;·&nbsp; Powered by [Deepgram](https://deepgram.com) &nbsp;·&nbsp; Deployed on [Render](https://render.com)
+Built by [Chisom](https://github.com/fachiny17) &nbsp;·&nbsp; Powered by [Deepgram](https://deepgram.com) &nbsp;·&nbsp;
 
 </div>
