@@ -120,21 +120,21 @@ The browser's `MediaRecorder` only includes the WebM container header in the fir
 
 ```text
 NexLearn/
-├── app.py
-├── features.py
-├── template/
-│   └── static/
-│       ├── css/
-│       │   └── style.css
-│       └── js/
-│           └── script.js
-├── templates/
-│   └── index.html
-├── test.py
-├── requirements.txt
-├── .env
-├── .gitignore
-└── README.md
+|-- app.py
+|-- features.py
+|-- template/
+|   |-- static/
+|       |-- css/
+|       |   |-- style.css
+|       |-- js/
+|           |-- script.js
+|-- templates/
+|   |-- index.html
+|-- test.py
+|-- requirements.txt
+|-- .env
+|-- .gitignore
+|-- README.md
 ```
 
 ## Getting Started
