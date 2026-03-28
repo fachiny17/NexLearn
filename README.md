@@ -11,14 +11,14 @@ Capture a teacher's voice through the browser. Watch it transcribe live. Downloa
 <br/>
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20App-00d4ff?style=for-the-badge)](https://your-render-url.onrender.com)
-[![YouTube Demo](https://img.shields.io/badge/▶%20YouTube-Watch%20Demo-FF0000?style=for-the-badge&logo=youtube)](https://youtube.com/your-video-link)
+[![YouTube Demo](https://youtu.be/3a2gZvGKZvU)](https://youtu.be/3a2gZvGKZvU)
 [![Medium Blog](https://img.shields.io/badge/📝%20Medium-Read%20Article-000000?style=for-the-badge&logo=medium)](https://medium.com/your-article-link)
 [![License: MIT](https://img.shields.io/badge/License-MIT-6366f1?style=for-the-badge)](LICENSE)
 
 <br/>
 
 <!-- Replace with your actual screenshot -->
-![NexLearn Demo](https://your-screenshot-url-here.png)
+![NexLearn Demo](assets/nexlearn_ui.jpeg)
 
 </div>
 
@@ -72,12 +72,12 @@ Under the hood, audio captured by the browser's `MediaRecorder` API is streamed 
 ## Demo
 
 ### 📺 Video Walkthrough
-> [Watch on YouTube →](https://youtube.com/your-video-link)
+> [Watch on YouTube →](https://youtu.be/3a2gZvGKZvU)
 
 ### 📸 Screenshot
 
 <!-- Replace the URL below with your actual hosted screenshot -->
-![NexLearn UI Screenshot](https://your-screenshot-url-here.png)
+![NexLearn UI Screenshot](assets/nexlearn_ui.jpeg)
 
 ### 🚀 Live App
 > [nexlearn.onrender.com →](https://your-render-url.onrender.com)
@@ -356,7 +356,7 @@ If you run into issues or have questions:
 
 - 🐛 **GitHub Issues** — [Open an issue](https://github.com/fachiny17/NexLearn/issues) for bugs and feature requests
 - 📝 **Medium Article** — [Read the full build walkthrough](https://medium.com/your-article-link) for a deep dive into how NexLearn was built
-- 📺 **YouTube** — [Watch the demo](https://youtube.com/your-video-link) to see the app in action
+- 📺 **YouTube** — [Watch the demo](https://youtu.be/3a2gZvGKZvU) to see the app in action
 
 If NexLearn helped you or your project, consider giving the repo a ⭐ — it helps others find it.
 
