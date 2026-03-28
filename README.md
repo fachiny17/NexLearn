@@ -167,7 +167,7 @@ NexLearn/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/nexlearn.git
+git clone https://github.com/fachiny17/NexLearn.git
 cd nexlearn
 ```
 
@@ -354,7 +354,7 @@ Please keep PRs focused — one feature or fix per PR makes review much faster.
 
 If you run into issues or have questions:
 
-- 🐛 **GitHub Issues** — [Open an issue](https://github.com/your-username/nexlearn/issues) for bugs and feature requests
+- 🐛 **GitHub Issues** — [Open an issue](https://github.com/fachiny17/NexLearn/issues) for bugs and feature requests
 - 📝 **Medium Article** — [Read the full build walkthrough](https://medium.com/your-article-link) for a deep dive into how NexLearn was built
 - 📺 **YouTube** — [Watch the demo](https://youtube.com/your-video-link) to see the app in action
 
@@ -370,6 +370,6 @@ This project is licensed under the [MIT License](LICENSE) — free to use, modif
 
 <div align="center">
 
-Built by [Chisom](https://github.com/your-username) &nbsp;·&nbsp; Powered by [Deepgram](https://deepgram.com) &nbsp;·&nbsp; Deployed on [Render](https://render.com)
+Built by [Chisom](https://github.com/fachiny17) &nbsp;·&nbsp; Powered by [Deepgram](https://deepgram.com) &nbsp;·&nbsp; Deployed on [Render](https://render.com)
 
 </div>
