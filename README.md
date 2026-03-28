@@ -6,8 +6,6 @@
 
 **Real-time speech-to-text for classrooms, powered by Deepgram Nova-3 and Flask.**
 
-Capture a teacher's voice through the browser. Watch it transcribe live. Download it instantly.
-
 <br/>
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20App-00d4ff?style=for-the-badge)](https://your-render-url.onrender.com)
