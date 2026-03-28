@@ -26,7 +26,6 @@ Capture a teacher's voice through the browser. Watch it transcribe live. Downloa
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
-- [Deployment](#deployment)
 - [Environment Variables](#environment-variables)
 - [API & Socket Events](#api--socket-events)
 - [Known Limitations & Roadmap](#known-limitations--roadmap)
@@ -69,15 +68,8 @@ Under the hood, audio captured by the browser's `MediaRecorder` API is streamed 
 
 ### 📸 Screenshot
 
-<!-- Replace the URL below with your actual hosted screenshot -->
 ![NexLearn UI Screenshot](assets/nexlearn_ui.jpeg)
 
-### 🚀 Live App
-> [nexlearn.onrender.com →](https://your-render-url.onrender.com)
-
-> **Note:** The live demo runs on a free Render instance. It may take 30–60 seconds to wake up after a period of inactivity.
-
----
 
 ## Tech Stack
 
@@ -89,7 +81,6 @@ Under the hood, audio captured by the browser's `MediaRecorder` API is streamed 
 | Audio Capture | Browser MediaRecorder API | WebM/Opus audio stream from mic |
 | Frontend | Vanilla JS, Socket.IO client | UI logic and socket communication |
 | Styling | CSS3 with custom properties | Animations, theming, responsive layout |
-| Deployment | Render, Gunicorn + Gevent | Production WSGI hosting |
 
 ---
 
