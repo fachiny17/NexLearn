@@ -11,18 +11,11 @@ Capture a teacher's voice through the browser. Watch it transcribe live. Downloa
 <br/>
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20App-00d4ff?style=for-the-badge)](https://your-render-url.onrender.com)
-[![YouTube Demo](https://youtu.be/3a2gZvGKZvU)](https://youtu.be/3a2gZvGKZvU)
+[![YouTube Demo](https://img.shields.io/badge/▶%20YouTube-Watch%20Demo-FF0000?style=for-the-badge&logo=youtube)](https://youtu.be/3a2gZvGKZvU)
 [![Medium Blog](https://img.shields.io/badge/📝%20Medium-Read%20Article-000000?style=for-the-badge&logo=medium)](https://medium.com/your-article-link)
 [![License: MIT](https://img.shields.io/badge/License-MIT-6366f1?style=for-the-badge)](LICENSE)
 
-<br/>
 
-<!-- Replace with your actual screenshot -->
-![NexLearn Demo](assets/nexlearn_ui.jpeg)
-
-</div>
-
----
 
 ## Table of Contents
 
