@@ -8,7 +8,6 @@
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20App-00d4ff?style=for-the-badge)](https://your-render-url.onrender.com)
 [![YouTube Demo](https://img.shields.io/badge/▶%20YouTube-Watch%20Demo-FF0000?style=for-the-badge&logo=youtube)](https://youtu.be/3a2gZvGKZvU)
 [![Medium Blog](https://img.shields.io/badge/📝%20Medium-Read%20Article-000000?style=for-the-badge&logo=medium)](https://medium.com/@iheanyifavourchisom/how-i-built-nexlearn-a-real-time-ai-voice-transcription-system-94e705ba8a3b)
 [![License: MIT](https://img.shields.io/badge/License-MIT-6366f1?style=for-the-badge)](LICENSE)
@@ -35,7 +34,7 @@
 
 ## Overview
 
-NexLearn is a web application that converts live speech into text in real time — built specifically for the classroom. A teacher speaks, students see the words appear on screen instantly. No file uploads, no post-processing delays, no third-party apps to install.
+NexLearn is a web application that converts live speech into text in real time; built specifically for the classroom. A teacher speaks, students see the words appear on screen instantly. No file uploads, no post-processing delays, no third-party apps to install.
 
 Under the hood, audio captured by the browser's `MediaRecorder` API is streamed in WebM chunks to a Flask/Socket.IO backend, which forwards it over a persistent WebSocket to Deepgram's Nova-3 model. Transcription results stream back within milliseconds and are broadcast to the client live.
 
@@ -119,6 +118,7 @@ The browser's `MediaRecorder` only includes the WebM container header in the fir
 
 ## Project Structure
 
+```
 NexLearn/
 ├── app.py                  # Flask server, Socket.IO handlers, session management
 ├── features.py             # DeepgramSession — asyncio WebSocket lifecycle
@@ -135,7 +135,7 @@ NexLearn/
 ├── .env                    # Environment variables (never commit this)
 ├── .gitignore
 └── README.md
-
+```
 
 ## Getting Started
 
