@@ -247,14 +247,12 @@ NexLearn communicates entirely over Socket.IO. Here is the full event reference:
 
 ### Current Limitations
 
-- **Extractive summaries only** — The current summary is the first 5 sentences of the transcript. It is a placeholder. Replace the `generate_summary` handler in `app.py` with an LLM call (OpenAI, Anthropic, etc.) for real AI summarization.
 - **In-memory sessions** — All session data lives in a Python dict. Restarting the server wipes all transcriptions. A database (Redis, PostgreSQL) would be needed for persistence.
 - **Single language per session** — The language is set at session start. Switching mid-recording is not currently supported.
 - **Free tier cold starts** — Free Render instances spin down after inactivity. The first request after a dormant period can take up to 60 seconds.
 
 ### Roadmap
 
-- [ ] LLM-powered smart summaries (OpenAI / Anthropic)
 - [ ] Persistent storage — save transcriptions to a database
 - [ ] User accounts and session history
 - [ ] Export to PDF and DOCX
