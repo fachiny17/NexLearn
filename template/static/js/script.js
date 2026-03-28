@@ -14,7 +14,7 @@ let connectingTimer     = null;
 let connectingStartTime = null;
 
 // ── Socket.IO setup ────────────────────────────────────────────────────────────
-const socket = io({ transports: ['websocket', 'pooling'] });
+const socket = io({ transports: ['websocket'] });
 window.socket = socket;
 
 socket.on('connect', () => {
