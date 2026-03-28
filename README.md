@@ -125,16 +125,18 @@ The browser's `MediaRecorder` only includes the WebM container header in the fir
 NexLearn/
 ├── app.py                  # Flask server, Socket.IO handlers, session management
 ├── features.py             # DeepgramSession — asyncio WebSocket lifecycle
+├── template/
+|   └── static/
+|     ├── css/
+|     │   └── style.css       # Styles, animations, CSS variables, responsive layout
+|     └── js/
+|         └── script.js       # Socket.IO client, recording state machine, UI logic
 ├── templates/
 │   └── index.html          # Single-page UI (Jinja2 template)
-├── static/
-│   ├── css/
-│   │   └── style.css       # Styles, animations, CSS variables, responsive layout
-│   └── js/
-│       └── script.js       # Socket.IO client, recording state machine, UI logic
 ├── test.py                 # Standalone local mic test — no browser needed
 ├── requirements.txt        # Python dependencies
-├── .env.example            # Environment variable template
+├── .env/                   # Environment variable
+├── .gitignore
 └── README.md
 ```
 
