@@ -61,10 +61,13 @@ Under the hood, audio captured by the browser's `MediaRecorder` API is streamed 
 
 ## Demo
 
-### 📺 Video Walkthrough
+### Video Walkthrough
 > [Watch on YouTube →](https://youtu.be/3a2gZvGKZvU)
 
-### 📸 Screenshot
+### I wrote an article about NextLearn
+> [Check it out on Medium →](https://medium.com/@iheanyifavourchisom/how-i-built-nexlearn-a-real-time-ai-voice-transcription-system-94e705ba8a3b)
+
+### Screenshot
 
 ![NexLearn UI Screenshot](assets/nexlearn_ui.jpeg)
 
