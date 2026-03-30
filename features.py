@@ -12,10 +12,6 @@ from deepgram import (
 load_dotenv()
 
 class DeepgramSession:
-    """
-    Manages a single Deepgram live‑transcription WebSocket connection
-    for real‑time audio streaming.
-    """
 
     def __init__(self, on_transcript, on_error=None, language="en-US"):
         """
@@ -40,10 +36,7 @@ class DeepgramSession:
     # Public API (thread‑safe)
     # ------------------------------------------------------------------
     def start(self, timeout=15):
-        """
-        Starts the background thread and establishes the WebSocket connection.
-        Returns True on success, False on failure (with error printed).
-        """
+ 
         self._thread = threading.Thread(target=self._run_loop, daemon=True)
         self._thread.start()
 
