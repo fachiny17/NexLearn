@@ -22,6 +22,7 @@
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
+- [Working Principle](#working-principle)
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
 - [API & Socket Events](#api--socket-events)
@@ -136,6 +137,10 @@ NexLearn/
    •.gitignore
    •README.md
 ```
+
+## Working Principle
+
+![NexLearn Working Principle](assets/nexlearn_working_principle.jpeg)
 
 ## Getting Started
 
