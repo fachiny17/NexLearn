@@ -22,19 +22,14 @@ class DeepgramSession:
         self._on_transcript = on_transcript
         self._on_error = on_error
         self._language = language
-
-        # Asyncio objects and thread
         self._loop = None
         self._dg_connection = None
         self._thread = None
-        self._ready = threading.Event()      # Signals that connection is ready
+        self._ready = threading.Event()
         self._connected = False
         self._stop_requested = False
         self._start_error = None
 
-    # ------------------------------------------------------------------
-    # Public API (thread‑safe)
-    # ------------------------------------------------------------------
     def start(self, timeout=15):
  
         self._thread = threading.Thread(target=self._run_loop, daemon=True)
@@ -68,9 +63,6 @@ class DeepgramSession:
     def is_connected(self):
         return self._connected and not self._stop_requested
 
-    # ------------------------------------------------------------------
-    # Internal asyncio logic (runs in a separate thread)
-    # ------------------------------------------------------------------
     def _run_loop(self):
         """Entry point for the background thread: creates an asyncio loop and runs _connect."""
         self._loop = asyncio.new_event_loop()
@@ -93,19 +85,16 @@ class DeepgramSession:
 
         print(f"[Deepgram] Connecting (key: {api_key[:8]}...)")
 
-        # Create Deepgram client with keepalive enabled
         config = DeepgramClientOptions(options={"keepalive": "true"})
         client = DeepgramClient(api_key, config)
         self._dg_connection = client.listen.asynclive.v("1")
 
-        # --- Event handlers (these run inside the asyncio thread) ---
         async def on_open(client, open_evt, **kwargs):
             self._connected = True
             self._ready.set()
             print("[Deepgram] WebSocket open ✓")
 
         async def on_message(client, result, **kwargs):
-            # Extract the transcript from the Deepgram result
             try:
                 sentence = result.channel.alternatives[0].transcript
             except (AttributeError, IndexError):
