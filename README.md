@@ -259,6 +259,7 @@ NexLearn communicates entirely over Socket.IO. Here is the full event reference:
 - [ ] Speaker diarization — identify who is speaking
 - [ ] Real-time collaborative view for students
 - [ ] Keyword highlighting and topic extraction
+- [ ] Translation to other languages
 
 ---
 
