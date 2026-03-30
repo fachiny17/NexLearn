@@ -75,6 +75,7 @@ def handle_start_recording():
         'start_time': datetime.now(),
         'text': '',
         'language': None,
+        'chunk_index': 0,
         'dg_session': None,
         'webm_header': None,
     })
@@ -108,16 +109,19 @@ def handle_start_recording():
             return
 
         dg = DeepgramSession(on_transcript=on_transcript, on_error=on_dg_error)
+        ok = dg.start()   # blocks here — but now on its own thread
 
-        if not dg.start():
-            current['is_recording'] = False
-            current['dg_starting'] = False
+        if not ok:
+            if current:
+                current['is_recording'] = False
+                current['dg_starting'] = False
             socketio.emit('recording_started', {
                 'status': 'error',
                 'error': 'Could not connect to Deepgram. Check your API key and network.'
             }, room=session_id)
             return
 
+        # If stop_recording arrived while we were connecting, honour it
         if not current.get('is_recording'):
             dg.stop()
             current['dg_starting'] = False
@@ -130,6 +134,7 @@ def handle_start_recording():
         print(f"[•] Recording started: {session_id}")
 
     threading.Thread(target=_start_dg, daemon=True).start()
+    # Return immediately — the client gets 'recording_started' once DG is ready
 
 
 @socketio.on('stop_recording')
@@ -139,6 +144,7 @@ def handle_stop_recording():
     if session is None:
         return
 
+    # Signal intent to stop — _start_dg checks this flag after connecting
     session['is_recording'] = False
 
     if session['dg_session']:
@@ -173,13 +179,15 @@ def handle_resume_recording():
 
 @socketio.on('audio_chunk')
 def handle_audio_chunk(data):
+    
     session_id = request.sid
     session = sessions.get(session_id)
-    
+
     if not (session and session['is_recording'] and not session['paused']):
         emit('chunk_received', {'status': 'skipped'})
         return
 
+    # Deepgram may still be connecting — drop chunk rather than crash
     if session.get('dg_starting'):
         emit('chunk_received', {'status': 'connecting'})
         return
