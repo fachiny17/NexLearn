@@ -187,17 +187,7 @@ def handle_resume_recording():
 
 @socketio.on('audio_chunk')
 def handle_audio_chunk(data):
-    """
-    Receive a raw WebM chunk from the browser and forward it
-    directly to Deepgram — no ffmpeg decode needed.
-
-    The browser's MediaRecorder emits stream-fragmented WebM:
-      chunk 0  → EBML header + first cluster  (self-contained)
-      chunk N  → cluster data only            (needs header prepended)
-
-    We save the first chunk and prepend it to all subsequent ones so
-    Deepgram always sees a valid WebM stream.
-    """
+    
     session_id = request.sid
     session = sessions.get(session_id)
 
