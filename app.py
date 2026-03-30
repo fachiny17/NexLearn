@@ -64,7 +64,6 @@ def handle_start_recording():
     if session is None:
         return
 
-    # Stop any leftover Deepgram session
     if session['dg_session']:
         session['dg_session'].stop()
 
@@ -109,7 +108,7 @@ def handle_start_recording():
             return
 
         dg = DeepgramSession(on_transcript=on_transcript, on_error=on_dg_error)
-        ok = dg.start()   # blocks here — but now on its own thread
+        ok = dg.start()
 
         if not ok:
             if current:
@@ -121,7 +120,6 @@ def handle_start_recording():
             }, room=session_id)
             return
 
-        # If stop_recording arrived while we were connecting, honour it
         if not current.get('is_recording'):
             dg.stop()
             current['dg_starting'] = False
@@ -134,8 +132,6 @@ def handle_start_recording():
         print(f"[•] Recording started: {session_id}")
 
     threading.Thread(target=_start_dg, daemon=True).start()
-    # Return immediately — the client gets 'recording_started' once DG is ready
-
 
 @socketio.on('stop_recording')
 def handle_stop_recording():
@@ -144,7 +140,6 @@ def handle_stop_recording():
     if session is None:
         return
 
-    # Signal intent to stop — _start_dg checks this flag after connecting
     session['is_recording'] = False
 
     if session['dg_session']:
@@ -187,7 +182,6 @@ def handle_audio_chunk(data):
         emit('chunk_received', {'status': 'skipped'})
         return
 
-    # Deepgram may still be connecting — drop chunk rather than crash
     if session.get('dg_starting'):
         emit('chunk_received', {'status': 'connecting'})
         return
@@ -202,11 +196,9 @@ def handle_audio_chunk(data):
         chunk_index = session['chunk_index']
 
         if chunk_index == 0:
-            # First chunk contains the EBML header — save it
             session['webm_header'] = chunk_bytes
             blob = chunk_bytes
         else:
-            # Prepend header so Deepgram sees a valid WebM on every chunk
             blob = session['webm_header'] + chunk_bytes
 
         session['chunk_index'] += 1
@@ -232,7 +224,6 @@ def handle_generate_summary():
         emit('summary_result', {'success': False, 'error': 'No transcription available yet'})
         return
 
-    # Simple extractive placeholder — replace with an LLM call as needed
     sentences = [s.strip() for s in text.split('.') if s.strip()]
     summary = '. '.join(sentences[:5])
     if summary and not summary.endswith('.'):
