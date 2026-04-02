@@ -38,3 +38,6 @@ livetranscriber==0.1.1
 
 #gevent-websocket
 gevent-websocket==0.10.1
+
+# Google Gemini (GenAI Python SDK)
+google-genai==1.70.0
