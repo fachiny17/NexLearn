@@ -5,6 +5,12 @@ import threading
 from datetime import datetime
 from features import DeepgramSession
 
+# for summary feneration
+from google import genai
+from dotenv import load_dotenv
+
+load_dotenv()
+
 app = Flask(
     __name__,
     static_folder='template/static',
@@ -215,6 +221,9 @@ def handle_generate_summary():
     session_id = request.sid
     session = sessions.get(session_id)
 
+    api_key = os.getenv("GEMINI_API_KEY")
+    client = genai.Client(api_key=api_key)
+    
     if session is None:
         emit('summary_result', {'success': False, 'error': 'Session not found'})
         return
@@ -224,13 +233,32 @@ def handle_generate_summary():
         emit('summary_result', {'success': False, 'error': 'No transcription available yet'})
         return
 
-    sentences = [s.strip() for s in text.split('.') if s.strip()]
-    summary = '. '.join(sentences[:5])
+#    sentences = [s.strip() for s in text.split('.') if s.strip()]
+#    summary = '. '.join(sentences[:5])
+#    if summary and not summary.endswith('.'):
+#        summary += '.'
+#
+#    session['summary'] = summary
+#    emit('summary_result', {'success': True, 'summary': summary})
+    
+    lecture_transcript = [s.strip() for s in text.split('.') if s.strip()]
+    prompt = f"""
+    You're are a helpful teaching assistant. Your task is to summarize the following lecture transcript.
+    Be concise and focus on the key concepts, definitions, and main arguments.
+
+    Transcript:
+    {lecture_transcript}
+
+    Summary:
+    """
+
+    model_name = "gemini-2.5-flash"
+    summary = client.models.generate_content(model=model_name, contents=prompt)
     if summary and not summary.endswith('.'):
         summary += '.'
-
+        
     session['summary'] = summary
-    emit('summary_result', {'success': True, 'summary': summary})
+    emit('summaty_result', {'success': True, 'summary':summary})
 
 
 @socketio.on('download_transcription')
