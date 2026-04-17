@@ -632,3 +632,26 @@ body {
     background-size: 1000px 100%;
     animation: shimmer 2s infinite;
 }
+
+/* Light theme */
+body.light-theme {
+    --bg-primary: #f0f4f8;
+    --bg-secondary: #e2e8f0;
+    --bg-card: rgba(255, 255, 255, 0.8);
+    --bg-card-hover: rgba(255, 255, 255, 0.95);
+    --text-primary: #1a2a3a;
+    --text-secondary: #4a5568;
+    --border-color: rgba(0, 100, 150, 0.2);
+    --border-glow: rgba(0, 100, 150, 0.4);
+}
+
+body.light-theme {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+body.light-theme .stars,
+body.light-theme .stars2,
+body.light-theme .stars3 {
+    opacity: 0.4;
+}
