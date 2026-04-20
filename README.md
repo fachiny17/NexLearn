@@ -80,6 +80,7 @@ Under the hood, audio captured by the browser's `MediaRecorder` API is streamed 
 | Real-time | Flask-SocketIO, Gevent | Bidirectional WebSocket events |
 | Transcription | Deepgram Nova-3 | Live speech-to-text AI model |
 | Audio Capture | Browser MediaRecorder API | WebM/Opus audio stream from mic |
+| Summarization | Gemini 2.5 Flash | Fast, efficient, large-scale content summarization |
 | Frontend | Vanilla JS, Socket.IO client | UI logic and socket communication |
 | Styling | CSS3 with custom properties | Animations, theming, responsive layout |
 
