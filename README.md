@@ -20,7 +20,6 @@
 - [Features](#features)
 - [Demo](#demo)
 - [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Working Principle](#working-principle)
 - [Getting Started](#getting-started)
@@ -83,41 +82,6 @@ Under the hood, audio captured by the browser's `MediaRecorder` API is streamed 
 | Summarization | Gemini 2.5 Flash | Fast, efficient, large-scale content summarization |
 | Frontend | Vanilla JS, Socket.IO client | UI logic and socket communication |
 | Styling | CSS3 with custom properties | Animations, theming, responsive layout |
-
----
-
-## Architecture
-
-```
-Browser (Client)
-│
-│  MediaRecorder → WebM chunks (every 2s)
-│  Socket.IO (websocket transport)
-│
-▼
-Flask Server (app.py)
-│
-│  Per-session store (in-memory dict)
-│  Background thread per recording session
-│
-▼
-DeepgramSession (features.py)
-│
-│  asyncio event loop in dedicated thread
-│  Persistent WebSocket (wss://api.deepgram.com)
-│  Nova-3 model, WebM/Opus auto-detect
-│
-▼
-Deepgram API
-│
-│  Streams back interim + final transcripts
-│
-▼
-Flask Server → Socket.IO emit → Browser UI
-```
-
-**Key design decision — EBML header prepending:**
-The browser's `MediaRecorder` only includes the WebM container header in the first chunk. Deepgram requires a valid WebM stream for every chunk it receives. The server saves the first chunk's header and prepends it to all subsequent chunks before forwarding — this is what makes streaming work reliably without ffmpeg.
 
 ---
 
