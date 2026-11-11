@@ -310,25 +310,14 @@ Please keep PRs focused — one feature or fix per PR makes review much faster.
 ---
 
 ## Support
-
-If you run into issues or have questions:
-
-- 🐛 **GitHub Issues** — [Open an issue](https://github.com/fachiny17/NexLearn/issues) for bugs and feature requests
 - 📝 **Medium Article** — [Read the full build walkthrough](https://medium.com/@iheanyifavourchisom/how-i-built-nexlearn-a-real-time-ai-voice-transcription-system-94e705ba8a3b) for a deep dive into how NexLearn was built
 - 📺 **YouTube** — [Watch the demo](https://youtu.be/3a2gZvGKZvU) to see the app in action
 
 If NexLearn helped you or your project, consider giving the repo a ⭐ — it helps others find it.
 
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE) — free to use, modify, and distribute with attribution.
-
----
 
 <div align="center">
 
-Built by [Chisom](https://github.com/fachiny17) &nbsp;·&nbsp; Powered by [Deepgram](https://deepgram.com) &nbsp;·&nbsp;
+Built by [Chisom](https://github.com/fachiny17) &nbsp;·&nbsp;
 
 </div>
