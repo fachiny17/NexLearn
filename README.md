@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/badge/NexLearn-AI%20Transcription-00d4ff?style=for-the-badge&logo=microphone&logoColor=white" alt="NexLearn"/>
 
-# NexLearn — AI Voice Transcription System
+# NexLearn
 
 **Real-time speech-to-text for classrooms, powered by Deepgram Nova-3 and Flask.**
 
